@@ -16,71 +16,9 @@ NPCs: 3 (Captain Ilyra, The Broker, Old Man Weiss)
 
 ## Install
 
-### Option A: SillyTavern's built-in installer (recommended)
-
-This extension's files already sit at the root of this folder (no nested
-subfolder), which is what SillyTavern's Git-based installer expects. To use
-it:
-
-1. Publish this folder as its own public GitHub repository — see
-   "Publishing to GitHub" below if you haven't done that part yet.
-2. In SillyTavern, open the **Extensions** panel (puzzle piece icon) and
-   click **Install extension**.
-3. Paste your repository URL, e.g. `https://github.com/<you>/<repo-name>`,
-   and confirm.
-4. SillyTavern clones it straight into its third-party extensions folder.
-   From then on, the extension manager can check for and pull updates for
-   you whenever you push new commits.
-
-### Option B: Manual copy
-
-If you'd rather not use GitHub, copy this folder into your SillyTavern
-installation at:
-
-```
-SillyTavern/public/scripts/extensions/third-party/wi-active-monitor/
-```
-
-(so that `manifest.json`, `index.js`, and `style.css` sit directly inside
-that folder), then restart SillyTavern or hard-refresh the browser tab
-(Ctrl+F5) if the server is already running.
-
-### Either way
-
-Open the **Extensions** panel and confirm "WI Active Monitor" is enabled.
-Its settings drawer will appear there too.
-
-## Publishing to GitHub
-
-Before your first push, open `manifest.json` and replace the placeholder
-`homePage` URL with your actual repo URL (and update `author` if you'd
-like). This isn't required for the installer to work, but it's what shows
-up in SillyTavern's extension manager.
-
-Then, to create the repo and push — the short version:
-
-```bash
-cd wi-active-monitor
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/<you>/<repo-name>.git
-git push -u origin main
-```
-
-Then use Option A above to install it. To publish an update later, edit the
-files, bump `version` in `manifest.json`, and:
-
-```bash
-git add -A
-git commit -m "Describe your change"
-git push
-```
-
-SillyTavern's extension manager will pick up the new commit next time you
-check for updates (or automatically, since `auto_update` is enabled in the
-manifest).
+In SillyTavern, open the **Extensions** panel (puzzle piece icon), click
+**Install extension**, and paste this repository's URL. Then open the
+Extensions panel again to find "WI Active Monitor" and its settings drawer.
 
 ## Setup
 
@@ -121,12 +59,6 @@ thing that's easy to forget about.
 
 ## Notes / limitations
 
-- This reads SillyTavern's extension context API (`SillyTavern.getContext()`),
-  specifically `getWorldInfoNames()` and `loadWorldInfo()`, plus the
-  `WORLDINFO_UPDATED` / `WORLDINFO_SETTINGS_UPDATED` events. These are part
-  of the documented extension API, but internal World Info internals can
-  change between SillyTavern releases — if the bubble stops updating after
-  an update, check the browser console for errors from `[wiActiveMonitor]`.
 - Entry names come from the entry's "Comment/Title" field, falling back to
   its first primary key, then to `Entry #<uid>` if neither is set.
 - Settings are stored per SillyTavern user profile via the standard
