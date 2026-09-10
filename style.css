@@ -1,0 +1,167 @@
+/* WI Active Monitor */
+
+.wiam-bubble {
+    position: fixed;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--SmartThemeBotMesBlurTintColor, #3a2a12);
+    border: 1px solid var(--SmartThemeBorderColor, #b8862c);
+    color: var(--SmartThemeBodyColor, #f0d8a0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    font-size: 0.9rem;
+    user-select: none;
+    opacity: 0.92;
+}
+
+.wiam-bubble:hover {
+    opacity: 1;
+}
+
+.wiam-bubble i {
+    color: #e0a526;
+}
+
+.wiam-panel {
+    position: fixed;
+    z-index: 9999;
+    width: 320px;
+    max-width: 80vw;
+    max-height: 50vh;
+    overflow-y: auto;
+    background: var(--SmartThemeBlurTintColor, #1e1e1e);
+    border: 1px solid var(--SmartThemeBorderColor, #555);
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    color: var(--SmartThemeBodyColor, #ddd);
+    font-size: 0.85rem;
+}
+
+.wiam-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--SmartThemeBorderColor, #555);
+}
+
+.wiam-panel-close {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.wiam-panel-close:hover {
+    opacity: 1;
+}
+
+.wiam-panel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.wiam-book-line {
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.wiam-count {
+    opacity: 0.85;
+}
+
+.wiam-names {
+    opacity: 0.85;
+}
+
+.wiam-empty-hint {
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* Positioning */
+.wiam-pos-bottom-right {
+    right: 16px;
+    bottom: 16px;
+}
+
+.wiam-pos-bottom-left {
+    left: 16px;
+    bottom: 16px;
+}
+
+.wiam-pos-top-right {
+    right: 16px;
+    top: 60px;
+}
+
+.wiam-pos-top-left {
+    left: 16px;
+    top: 60px;
+}
+
+/* When the bubble sits bottom-*, its panel should open above it */
+.wiam-panel.wiam-pos-bottom-right,
+.wiam-panel.wiam-pos-bottom-left {
+    bottom: 60px;
+}
+
+.wiam-panel.wiam-pos-top-right,
+.wiam-panel.wiam-pos-top-left {
+    top: 100px;
+}
+
+/* Settings drawer */
+.wiam-settings .wiam-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 6px 0;
+}
+
+.wiam-settings .wiam-row select,
+.wiam-settings .wiam-row input[type="number"] {
+    flex: 0 0 auto;
+}
+
+.wiam-books-header {
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.wiam-book-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.wiam-book-actions a {
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+.wiam-book-actions a:hover {
+    opacity: 1;
+}
+
+.wiam-book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 220px;
+    overflow-y: auto;
+    margin: 6px 0 10px 0;
+    padding: 6px;
+    border: 1px solid var(--SmartThemeBorderColor, #555);
+    border-radius: 6px;
+}
+
+.wiam-book-item {
+    margin: 0;
+}
