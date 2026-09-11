@@ -1,70 +1,79 @@
 /* WI Active Monitor */
 
-.wiam-bubble {
+.wiam-widget {
     position: fixed;
+    right: 16px;
+    bottom: 16px;
     z-index: 9999;
+    background: var(--SmartThemeBlurTintColor, #1e1e1e);
+    border: 1px solid var(--SmartThemeBorderColor, #555);
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    color: var(--SmartThemeBodyColor, #ddd);
+    font-size: 0.85rem;
+    max-width: 340px;
+    user-select: none;
+}
+
+.wiam-widget.wiam-collapsed {
+    border-radius: 999px;
+    max-width: none;
+    width: fit-content;
+}
+
+.wiam-header {
     display: flex;
     align-items: center;
     gap: 6px;
     padding: 8px 12px;
-    border-radius: 999px;
-    background: var(--SmartThemeBotMesBlurTintColor, #3a2a12);
-    border: 1px solid var(--SmartThemeBorderColor, #b8862c);
-    color: var(--SmartThemeBodyColor, #f0d8a0);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    cursor: pointer;
-    font-size: 0.9rem;
-    user-select: none;
-    opacity: 0.92;
+    cursor: grab;
+    border-radius: 14px;
+    touch-action: none;
 }
 
-.wiam-bubble:hover {
-    opacity: 1;
+.wiam-header:active {
+    cursor: grabbing;
 }
 
-.wiam-bubble i {
+.wiam-widget.wiam-expanded .wiam-header {
+    border-bottom: 1px solid var(--SmartThemeBorderColor, #555);
+    border-radius: 14px 14px 0 0;
+}
+
+.wiam-header i.fa-triangle-exclamation {
     color: #e0a526;
 }
 
-.wiam-panel {
-    position: fixed;
-    z-index: 9999;
-    width: 320px;
-    max-width: 80vw;
-    max-height: 50vh;
-    overflow-y: auto;
-    background: var(--SmartThemeBlurTintColor, #1e1e1e);
-    border: 1px solid var(--SmartThemeBorderColor, #555);
-    border-radius: 10px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    color: var(--SmartThemeBodyColor, #ddd);
-    font-size: 0.85rem;
-}
-
-.wiam-panel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.wiam-count {
     font-weight: bold;
-    margin-bottom: 8px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--SmartThemeBorderColor, #555);
 }
 
-.wiam-panel-close {
-    cursor: pointer;
+.wiam-label {
+    flex: 1;
+    white-space: nowrap;
+}
+
+.wiam-toggle {
     opacity: 0.7;
+    cursor: pointer;
 }
 
-.wiam-panel-close:hover {
+.wiam-toggle:hover {
     opacity: 1;
 }
 
-.wiam-panel-list {
+.wiam-widget.wiam-collapsed .wiam-label,
+.wiam-widget.wiam-collapsed .wiam-list {
+    display: none;
+}
+
+.wiam-list {
+    padding: 10px 12px;
     display: flex;
     flex-direction: column;
     gap: 6px;
+    max-height: 40vh;
+    overflow-y: auto;
 }
 
 .wiam-book-line {
@@ -72,10 +81,7 @@
     word-break: break-word;
 }
 
-.wiam-count {
-    opacity: 0.85;
-}
-
+.wiam-count-inline,
 .wiam-names {
     opacity: 0.85;
 }
@@ -83,38 +89,6 @@
 .wiam-empty-hint {
     opacity: 0.7;
     font-style: italic;
-}
-
-/* Positioning */
-.wiam-pos-bottom-right {
-    right: 16px;
-    bottom: 16px;
-}
-
-.wiam-pos-bottom-left {
-    left: 16px;
-    bottom: 16px;
-}
-
-.wiam-pos-top-right {
-    right: 16px;
-    top: 60px;
-}
-
-.wiam-pos-top-left {
-    left: 16px;
-    top: 60px;
-}
-
-/* When the bubble sits bottom-*, its panel should open above it */
-.wiam-panel.wiam-pos-bottom-right,
-.wiam-panel.wiam-pos-bottom-left {
-    bottom: 60px;
-}
-
-.wiam-panel.wiam-pos-top-right,
-.wiam-panel.wiam-pos-top-left {
-    top: 100px;
 }
 
 /* Settings drawer */
@@ -129,6 +103,15 @@
 .wiam-settings .wiam-row select,
 .wiam-settings .wiam-row input[type="number"] {
     flex: 0 0 auto;
+}
+
+.wiam-settings .wiam-row a {
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+.wiam-settings .wiam-row a:hover {
+    opacity: 1;
 }
 
 .wiam-books-header {
@@ -150,18 +133,76 @@
     opacity: 1;
 }
 
-.wiam-book-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    max-height: 220px;
-    overflow-y: auto;
+.wiam-book-select-container {
     margin: 6px 0 10px 0;
-    padding: 6px;
-    border: 1px solid var(--SmartThemeBorderColor, #555);
-    border-radius: 6px;
 }
 
-.wiam-book-item {
-    margin: 0;
+/* Fallback tag/search selector (used only if Select2 isn't available) */
+.wiam-tagbox {
+    position: relative;
+    border: 1px solid var(--SmartThemeBorderColor, #555);
+    border-radius: 6px;
+    padding: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+}
+
+.wiam-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--SmartThemeBotMesBlurTintColor, #333);
+    border: 1px solid var(--SmartThemeBorderColor, #555);
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: 0.8rem;
+}
+
+.wiam-chip i {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.wiam-chip i:hover {
+    opacity: 1;
+}
+
+.wiam-tag-input {
+    flex: 1;
+    min-width: 120px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: inherit;
+}
+
+.wiam-tag-dropdown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    background: var(--SmartThemeBlurTintColor, #1e1e1e);
+    border: 1px solid var(--SmartThemeBorderColor, #555);
+    border-radius: 6px;
+    z-index: 10000;
+}
+
+.wiam-tag-item {
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.wiam-tag-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.wiam-tag-empty {
+    padding: 6px 10px;
+    opacity: 0.6;
+    font-style: italic;
 }

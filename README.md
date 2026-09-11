@@ -22,25 +22,31 @@ Extensions panel again to find "WI Active Monitor" and its settings drawer.
 
 ## Setup
 
-1. In the extension's settings drawer, tick the checkboxes for the World
-   Info books you want it to watch, under "Books to monitor". Nothing is
-   watched by default — you opt books in explicitly.
-2. A small bubble will appear (bottom-right by default) whenever any entry
-   in a watched book is enabled. Click it to open the full list, grouped by
-   book, with each entry's name.
-3. If nothing is currently toggled on, the bubble hides itself (this is the
-   default — uncheck "Hide bubble when nothing is active" if you'd rather it
-   always stay visible showing "0").
+1. In the extension's settings drawer, use the "Books to monitor" search
+   box to pick which World Info books to watch — type to filter, click a
+   result to add it as a chip, click the × on a chip to remove it. Nothing
+   is watched by default; you opt books in explicitly.
+2. A widget appears (bottom-right by default, expanded) showing every
+   currently-enabled entry in the books you're watching, grouped by book.
+3. **Drag** the widget by its header to move it anywhere on screen — it
+   remembers where you leave it.
+4. Click the header's chevron to **collapse** it down to just a warning icon
+   and a count, or expand it back. Both states are still draggable, and the
+   collapsed/expanded choice is remembered too.
+5. If nothing is currently toggled on, the widget hides itself entirely
+   (this is the default — uncheck "Hide widget when nothing is active" if
+   you'd rather it always stay visible showing "0").
 
 Other settings:
 
-- **Bubble position** — bottom-right / bottom-left / top-right / top-left,
-  in case it overlaps something else in your theme.
-- **Auto-refresh every N seconds** — the bubble also updates immediately
+- **Auto-refresh every N seconds** — the widget also updates immediately
   whenever World Info data changes or the chat switches, but a periodic
   refresh is included as a safety net (set to `0` to rely purely on those
   events).
 - **Refresh now** — manual refresh button.
+- **Reset to default corner** — snaps the widget back to the bottom-right
+  in case you drag it somewhere awkward or off-screen after resizing your
+  browser window.
 - **All / None** next to "Books to monitor" — quickly select or clear every
   known book. The rotate icon rescans for newly created books.
 
